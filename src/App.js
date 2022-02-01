@@ -87,6 +87,16 @@ const particlesOptions = {
 
 function App() {
 
+  const [Input, setInput] = useState("");
+
+  const onInputChange = (event) => {
+    
+  }
+
+  const onButtonSubmit = () => [
+
+  ]
+
   const particlesInit = (main) => {
     console.log(main);
 
@@ -104,7 +114,7 @@ function App() {
       <Navigation />
       <Logo />
       <Rank />
-      <ImageLinkForm />
+      <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit}/>
       <Facerecognition />
     </div>
   );
