@@ -1,6 +1,6 @@
 .tilt {
-    background: mediumslateblue;
-    margin: 50px;
+    background: hsl(249, 80%, 67%);
+    margin: 25px auto;
     height: 100px;
     width: 100px;
 }
