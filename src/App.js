@@ -1,4 +1,4 @@
-
+import { useState } from 'react';
 import './App.css';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Logo from './components/Logo/Logo';
@@ -87,7 +87,7 @@ const particlesOptions = {
 
 function App() {
 
-  const [Input, setInput] = useState("");
+  const [input, setInput] = useState("");
 
   const onInputChange = (event) => {
     
