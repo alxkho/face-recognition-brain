@@ -4,8 +4,13 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Logo from './components/Logo/Logo';
 import Navigation from './components/Navigation/Navigation';
 import Rank from './components/Rank/Rank';
-import Facerecognition from './components/FaceRecognition/FaceRecognition';
+import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Particles from "react-tsparticles";
+
+const clarifaiKey = "3cbaf747fa6440ab921a123734dc0827";
+const clarifaiUserId = "7p72l82ld1iq";
+const clarifaiAppId = "f94c26b8f7ca4d79913f339331b30776";
+const clarifaiModelId = "celebrity-face-detection";
 
 const particlesOptions = {
   background: {
@@ -88,23 +93,53 @@ const particlesOptions = {
 function App() {
 
   const [input, setInput] = useState("");
+  const [imgURL, setImgURL] = useState("");
 
-  const onInputChange = (event) => {
-    
+  const raw = JSON.stringify({
+    "user_app_id": {
+      "user_id": clarifaiUserId,
+      "app_id": clarifaiAppId
+    },
+    "inputs": [
+      {
+        "data": {
+          "image": {
+            "url": imgURL
+          }
+        }
+      }
+    ]
+  });
+
+  const onInputChange = (e) => {
+    setInput(e.target.value)
+
   }
 
-  const onButtonSubmit = () => [
+  const onButtonSubmit = () => {
+    setImgURL(input)
 
-  ]
+    fetch(`https://api.clarifai.com/v2/models/${clarifaiModelId}/outputs`, {
+      method: 'POST',
+      headers: {
+        // 'Accept': 'application/json',
+        'Authorization': `Key ${clarifaiKey}`
+      },
+      body: raw
+    })
+      .then(response => response.json())
+      .then(result => console.log(result.outputs[0].data.regions[0].data.concepts[0].name,result.outputs[0].data.regions[0].region_info.bounding_box ))
+      .catch(error => console.log('error', error));
+  }
 
   const particlesInit = (main) => {
-    console.log(main);
+    // console.log(main);
 
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
   };
 
   const particlesLoaded = (container) => {
-    console.log(container);
+    // console.log(container);
   };
 
 
@@ -114,8 +149,8 @@ function App() {
       <Navigation />
       <Logo />
       <Rank />
-      <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit}/>
-      <Facerecognition />
+      <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit} />
+      <FaceRecognition imgURL={imgURL}/>
     </div>
   );
 }

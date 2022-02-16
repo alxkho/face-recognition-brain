@@ -2,10 +2,12 @@
 
 import "./FaceRecognition.css"
 
-const Facerecognition = () => {
+const Facerecognition = ({imgURL}) => {
     return (
-        <div className="ma4 mt0">
-
+        <div className="center ma">
+            <div className="absolute ma2">
+            <img alt="" src={imgURL} width="500px" height="auto"/>
+            </div>
         </div>
     )
 }
