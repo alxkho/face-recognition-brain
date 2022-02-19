@@ -119,6 +119,7 @@ function App() {
       const boundingBox = e.region_info.bounding_box;
       boxes = [...boxes, {
         id: e.id,
+        result: e.data.concepts[0],
         position: {
           top: `${boundingBox.top_row * 100}%`,
           left: `${boundingBox.left_col * 100}%`,

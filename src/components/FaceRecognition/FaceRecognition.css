@@ -1,8 +1,10 @@
 .box {
   position: absolute;
   border: 2px solid #364f98;
+  font-size: 0px;
 }
 
 .box:hover {
   border: 3px solid #4c6dd1;
+  font-size: 1em;
 }
