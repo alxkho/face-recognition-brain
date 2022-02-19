@@ -94,6 +94,7 @@ function App() {
 
   const [input, setInput] = useState("");
   const [imgURL, setImgURL] = useState("");
+  const [boxes, setBoxes] = useState([]);
 
   const raw = JSON.stringify({
     "user_app_id": {
@@ -111,30 +112,48 @@ function App() {
     ]
   });
 
+  const calculatefaceLocation = (data) => {
+    let boxes = [];
+
+    data.outputs[0].data.regions.forEach(e => {
+      const boundingBox = e.region_info.bounding_box;
+      boxes = [...boxes, {
+        id: e.id,
+        position: {
+          top: `${boundingBox.top_row * 100}%`,
+          left: `${boundingBox.left_col * 100}%`,
+          width: `${Math.abs((boundingBox.left_col - boundingBox.right_col) * 100)}%`,
+          height: `${Math.abs((boundingBox.top_row - boundingBox.bottom_row) * 100)}%`,
+        }
+      }]
+    })
+
+    setBoxes(boxes)
+  }
+
   const onInputChange = (e) => {
     setInput(e.target.value)
-
   }
 
   const onButtonSubmit = () => {
-    setImgURL(input)
-
     fetch(`https://api.clarifai.com/v2/models/${clarifaiModelId}/outputs`, {
       method: 'POST',
       headers: {
-        // 'Accept': 'application/json',
+        'Accept': 'application/json',
         'Authorization': `Key ${clarifaiKey}`
       },
       body: raw
     })
       .then(response => response.json())
-      .then(result => console.log(result.outputs[0].data.regions[0].data.concepts[0].name,result.outputs[0].data.regions[0].region_info.bounding_box ))
+      .then(data => {
+        setImgURL(input)
+        calculatefaceLocation(data)
+      })
       .catch(error => console.log('error', error));
   }
 
   const particlesInit = (main) => {
     // console.log(main);
-
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
   };
 
@@ -150,7 +169,7 @@ function App() {
       <Logo />
       <Rank />
       <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit} />
-      <FaceRecognition imgURL={imgURL}/>
+      <FaceRecognition imgURL={imgURL} boxes={boxes} />
     </div>
   );
 }
