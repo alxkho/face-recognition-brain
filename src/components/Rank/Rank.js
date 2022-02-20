@@ -1,11 +1,9 @@
-
-
 import "./Rank.css"
 
 const Rank = () => {
     return (
-        <div className="">
-           <div className="white f3">
+        <div className="rank">
+           <div className="white f3 header">
                 {
                     'Alex, your current tank is...'
                 }
