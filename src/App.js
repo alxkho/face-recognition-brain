@@ -112,7 +112,7 @@ function App() {
     ]
   });
 
-  const calculatefaceLocation = (data) => {
+  const calculateFaceLocation = (data) => {
     let boxes = [];
 
     data.outputs[0].data.regions.forEach(e => {
@@ -137,18 +137,33 @@ function App() {
   }
 
   const onButtonSubmit = () => {
+    console.log(imgURL);
     fetch(`https://api.clarifai.com/v2/models/${clarifaiModelId}/outputs`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Authorization': `Key ${clarifaiKey}`
       },
-      body: raw
+      body: JSON.stringify({
+        "user_app_id": {
+          "user_id": clarifaiUserId,
+          "app_id": clarifaiAppId
+        },
+        "inputs": [
+          {
+            "data": {
+              "image": {
+                "url": input
+              }
+            }
+          }
+        ]
+      })
     })
-      .then(response => response.json())
-      .then(data => {
-        setImgURL(input)
-        calculatefaceLocation(data)
+    .then(response => response.json())
+    .then(data => {
+      setImgURL(input)
+      calculateFaceLocation(data)
       })
       .catch(error => console.log('error', error));
   }
