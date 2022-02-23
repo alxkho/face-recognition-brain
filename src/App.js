@@ -13,11 +13,6 @@ const clarifaiAppId = "f94c26b8f7ca4d79913f339331b30776";
 const clarifaiModelId = "celebrity-face-detection";
 
 const particlesOptions = {
-  background: {
-    color: {
-      value: "#0d47a1",
-    },
-  },
   fpsLimit: 60,
   interactivity: {
     events: {
@@ -32,62 +27,48 @@ const particlesOptions = {
       resize: true,
     },
     modes: {
-      bubble: {
-        distance: 400,
-        duration: 2,
-        opacity: 0.8,
-        size: 40,
-      },
       push: {
-        quantity: 4,
+        quantity: 10,
       },
       repulse: {
-        distance: 200,
+        distance: 150,
         duration: 0.4,
       },
     },
   },
   particles: {
-    color: {
-      value: "#ffffff",
-    },
     links: {
-      color: "#ffffff",
-      distance: 150,
+      color: "#fff",
       enable: true,
+      distance: 150,
       opacity: 0.5,
       width: 1,
     },
-    collisions: {
-      enable: true,
-    },
     move: {
-      direction: "none",
       enable: true,
-      outMode: "bounce",
-      random: false,
-      speed: 2,
-      straight: false,
-    },
-    number: {
-      density: {
-        enable: true,
-        area: 800,
-      },
-      value: 80,
-    },
-    opacity: {
-      value: 0.5,
-    },
-    shape: {
-      type: "circle",
+      speed: 3
     },
     size: {
-      random: true,
-      value: 5,
+      value: 3.5,
+      random: {
+        enable: true,
+        minimumValue: 1
+      },
+      animation: {
+        enable: true,
+        speed: 2.5,
+        minimumValue: 1
+      }
     },
-  },
-  detectRetina: true,
+    opacity: {
+      value: 1,
+      random: {
+        enable: true,
+        minimumValue: 0.4
+      }
+    },
+    detectRetina: true,
+  }
 }
 
 function App() {
@@ -160,10 +141,10 @@ function App() {
         ]
       })
     })
-    .then(response => response.json())
-    .then(data => {
-      setImgURL(input)
-      calculateFaceLocation(data)
+      .then(response => response.json())
+      .then(data => {
+        setImgURL(input)
+        calculateFaceLocation(data)
       })
       .catch(error => console.log('error', error));
   }
