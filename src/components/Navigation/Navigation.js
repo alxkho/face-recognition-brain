@@ -1,11 +1,19 @@
 import './Navigation.css';
 
-const Navigation = () => {
+const Navigation = ({ onRouteChange, isSignedIn }) => {
 
 
     return (
         <nav>
-            <p className="f4 link dim black underline pa3 pointer">Sign out</p>
+            {
+                isSignedIn
+                    ? <p onClick={() => onRouteChange("signout")} className="f4 link dim black underline pa3 pointer">Sign out</p>
+                    : <>
+                        <p onClick={() => onRouteChange("signin")} className="f4 link dim black underline pa3 pointer">Sign in</p>
+                        <p onClick={() => onRouteChange("register")} className="f4 link dim black underline pa3 pointer">Register</p>
+
+                    </>
+            }
         </nav>
     )
 }

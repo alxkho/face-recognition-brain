@@ -6,6 +6,8 @@ import Navigation from './components/Navigation/Navigation';
 import Rank from './components/Rank/Rank';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Particles from "react-tsparticles";
+import Signin from './components/Signin/Signin';
+import Register from './components/Register/Register';
 
 const clarifaiKey = "3cbaf747fa6440ab921a123734dc0827";
 const clarifaiUserId = "7p72l82ld1iq";
@@ -69,6 +71,8 @@ function App() {
   const [input, setInput] = useState("");
   const [imgURL, setImgURL] = useState("");
   const [boxes, setBoxes] = useState([]);
+  const [route, setRoute] = useState("signin");
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   const raw = JSON.stringify({
     "user_app_id": {
@@ -85,6 +89,15 @@ function App() {
       }
     ]
   });
+
+  const onRouteChange = (route) => {
+    if (route === "signout")
+      setIsSignedIn(false)
+    else if (route === "home")
+      setIsSignedIn(true)
+    setRoute(route)
+
+  }
 
   const calculateFaceLocation = (data) => {
     let boxes = [];
@@ -155,11 +168,20 @@ function App() {
   return (
     <div className="App">
       <Particles id="tsparticles" className='particles' init={particlesInit} loaded={particlesLoaded} options={particlesOptions} />
-      <Navigation />
-      <Logo />
-      <Rank />
-      <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit} />
-      <FaceRecognition imgURL={imgURL} boxes={boxes} />
+      <Navigation isSignedIn={isSignedIn} onRouteChange={onRouteChange} />
+      {
+        route === "home"
+          ? <>
+            <Logo />
+            <Rank />
+            <ImageLinkForm onInputChange={onInputChange} onButtonSubmit={onButtonSubmit} />
+            <FaceRecognition imgURL={imgURL} boxes={boxes} />
+          </>
+          : (route === "signin"
+            ? <Signin onRouteChange={onRouteChange} />
+            : <Register onRouteChange={onRouteChange} />)
+      }
+
     </div>
   );
 }
