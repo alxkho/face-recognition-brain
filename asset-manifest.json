@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/face-recognition-brain/static/css/main.982b6d92.css",
-    "main.js": "/face-recognition-brain/static/js/main.86077416.js",
+    "main.css": "/face-recognition-brain/static/css/main.354a2b99.css",
+    "main.js": "/face-recognition-brain/static/js/main.420955d4.js",
     "static/js/787.85a35644.chunk.js": "/face-recognition-brain/static/js/787.85a35644.chunk.js",
     "static/media/brain.png": "/face-recognition-brain/static/media/brain.596fd1753e61dcd0b963.png",
     "index.html": "/face-recognition-brain/index.html",
-    "main.982b6d92.css.map": "/face-recognition-brain/static/css/main.982b6d92.css.map",
-    "main.86077416.js.map": "/face-recognition-brain/static/js/main.86077416.js.map",
+    "main.354a2b99.css.map": "/face-recognition-brain/static/css/main.354a2b99.css.map",
+    "main.420955d4.js.map": "/face-recognition-brain/static/js/main.420955d4.js.map",
     "787.85a35644.chunk.js.map": "/face-recognition-brain/static/js/787.85a35644.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.982b6d92.css",
-    "static/js/main.86077416.js"
+    "static/css/main.354a2b99.css",
+    "static/js/main.420955d4.js"
   ]
 }
