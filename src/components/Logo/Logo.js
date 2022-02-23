@@ -5,11 +5,11 @@ import Tilt from 'react-parallax-tilt';
 
 const Logo = () => {
     return (
-        <Tilt className="br2 shadow-2 tilt ">
-            <div className="Tilt-inner pa1" >
+        <div className="br2 center tilt ">
+            <div className="tilt-inner pa1 o-10" >
                 <img alt="logo" src={brain}></img>
             </div>
-        </Tilt>
+        </div>
     )
 }
 

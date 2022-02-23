@@ -5,7 +5,7 @@ const Rank = () => {
         <div className="rank">
            <div className="white f3 header">
                 {
-                    'Alex, your current tank is...'
+                    'Alex, your current task is...'
                 }
            </div>
            <div className="white f1">

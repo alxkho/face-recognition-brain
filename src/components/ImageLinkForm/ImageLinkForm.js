@@ -7,9 +7,9 @@ const key = "3cbaf747fa6440ab921a123734dc0827"
 const ImageLinkForm = ({ onInputChange, onButtonSubmit }) => {
     return (
         <div className="">
-            <p className="f3">
+            <p className="f3 white">
                 {
-                    'detect faces'
+                    'This Magic brain will detect celebrity faces in your pictures. Git it a try!'
                 }
             </p>
             <div className="center">

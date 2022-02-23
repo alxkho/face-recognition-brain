@@ -1,6 +1,8 @@
 .tilt {
-    /* background: hsl(249, 80%, 67%); */
-    margin: 25px auto;
-    height: 200px;
-    width: 200px;
+     position: absolute;
+     left: -140px;
+    /* margin: 25px auto; */
+    /* height: 200px;
+    width: 200px; */
+    z-index: -100
 }

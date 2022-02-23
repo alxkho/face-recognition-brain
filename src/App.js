@@ -16,10 +16,6 @@ const particlesOptions = {
   fpsLimit: 60,
   interactivity: {
     events: {
-      onClick: {
-        enable: true,
-        mode: "push",
-      },
       onHover: {
         enable: true,
         mode: "repulse",
@@ -27,9 +23,6 @@ const particlesOptions = {
       resize: true,
     },
     modes: {
-      push: {
-        quantity: 10,
-      },
       repulse: {
         distance: 150,
         duration: 0.4,
@@ -46,7 +39,7 @@ const particlesOptions = {
     },
     move: {
       enable: true,
-      speed: 3
+      speed: 2
     },
     size: {
       value: 3.5,
